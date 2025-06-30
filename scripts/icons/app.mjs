@@ -28,7 +28,7 @@ async function go() {
     // This file is not complete yet and only includes the imports. We will write the actual docs to it later.
     fs.writeFileSync(
       "./Icons.figma.txt",
-      `import figma from "@figma/code-connect";\nimport {${names.join(", ")}} from "icons";`,
+      `import figma from "@figma/code-connect";\nimport {${names.join(", ")}} from "./index";`,
     );
     // Write index export file to disk (".txt" extension prevents unnecessary parsing)
     fs.writeFileSync(
@@ -47,7 +47,7 @@ async function go() {
   const figmaStarter = fs.readFileSync("./Icons.figma.txt");
   // Writing the official Code Connect Figma doc with the Code Connect from the JSON data appended to it.
   fs.writeFileSync(
-    "../../src/figma/icons/Icons.figma.tsx",
+    "../../src/ui/icons/Icons.figma.tsx",
     `${figmaStarter}\n${json.map((a) => a[2]).join("\n")}`,
   );
   // Writing each Icon React component file to disk. Additive only, does not delete old icons.
