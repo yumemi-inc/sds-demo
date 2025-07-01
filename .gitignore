@@ -26,10 +26,8 @@ dist-ssr
 *.sw?
 *storybook.log
 
-
 # claude code
 .mcp.json
-
 
 # cursor
 .cursor/mcp.json
