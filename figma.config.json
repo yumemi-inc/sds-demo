@@ -23,8 +23,9 @@
     },
     "documentUrlSubstitutions": {
       "<FIGMA_ICONS_BASE>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv",
-      "<FIGMA_ACCORDION_ACCORDION_ITEM>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=7753-4634",
-      "<FIGMA_ACCORDION_ACCORDION>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=7753-4779",
+     
+      "<FIGMA_PRIMITIVES_ACCORDION_ITEM>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=7753-4634",
+      "<FIGMA_PRIMITIVES_ACCORDION>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=7753-4779",
       "<FIGMA_AVATARS_AVATAR_BLOCK>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=2010-15581",
       "<FIGMA_AVATARS_AVATAR_GROUP>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=56-15608",
       "<FIGMA_AVATARS_AVATAR>": "https://figma.com/design/dH8IBJZoek9IfHqTGcUINv?node-id=9762:1103",

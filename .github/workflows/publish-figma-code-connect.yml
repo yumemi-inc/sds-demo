@@ -1,0 +1,18 @@
+name: Publish figma code connect
+on:
+  push:
+    branches: [main]
+    paths: ['**/*.figma.tsx']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18.2.0'
+      - run: npm ci
+      - run: npm run figma:publish
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
