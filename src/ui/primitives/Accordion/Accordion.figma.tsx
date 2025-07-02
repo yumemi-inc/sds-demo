@@ -5,13 +5,13 @@ figma.connect(AccordionItem, "<FIGMA_PRIMITIVES_ACCORDION_ITEM>", {
   props: {
     title: figma.string("Title"),
     children: figma.string("Content"),
-    isExpanded: figma.enum("State", {
-      Open: true,
-      Closed: false,
+    state: figma.enum("State", {
+      Open: undefined,
+      Closed: undefined,
     }),
   },
-  example: ({ children, ...props }) => (
-    <AccordionItem {...props}>
+  example: ({ title, children, ...props }) => (
+    <AccordionItem title={title} {...props}>
       {children}
     </AccordionItem>
   ),
@@ -19,11 +19,7 @@ figma.connect(AccordionItem, "<FIGMA_PRIMITIVES_ACCORDION_ITEM>", {
 
 figma.connect(Accordion, "<FIGMA_PRIMITIVES_ACCORDION>", {
   props: {
-    children: figma.children(["AccordionItem"]),
-    allowsMultipleExpanded: figma.boolean("Multiple Expanded", {
-      true: true,
-      false: false,
-    }),
+    children: figma.children(["Accordion Item"]),
   },
   example: ({ children, ...props }) => (
     <Accordion {...props}>

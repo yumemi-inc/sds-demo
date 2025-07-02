@@ -1,7 +1,7 @@
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: var(--sds-size-space-200);
+  gap: var(--sds-size-space-400);
 }
 
 .accordion-item {
@@ -11,66 +11,56 @@
   overflow: hidden;
 }
 
-.accordion-item[data-expanded] {
-  background-color: var(--sds-color-background-default-default);
-}
-
-.accordion-item:not([data-expanded]) {
+.accordion-item[data-expanded="false"] {
   background-color: var(--sds-color-background-default-secondary);
 }
 
 .accordion-trigger {
-  width: 100%;
-  padding: var(--sds-size-space-400);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sds-size-space-200);
-  background: transparent;
+  width: 100%;
+  padding: var(--sds-size-padding-lg);
+  background: none;
   border: none;
   cursor: pointer;
+  gap: var(--sds-size-space-200);
+  font-family: var(--sds-typography-body-font-family);
+  font-size: calc(var(--sds-typography-body-size-medium) * 1px);
+  line-height: 1.4;
   text-align: left;
 }
 
-.accordion-trigger:hover {
-  background-color: var(--sds-color-background-default-default-hover);
-}
-
 .accordion-trigger:focus-visible {
-  outline: var(--sds-size-stroke-focus-ring) solid var(--sds-color-border-neutral-default);
-  outline-offset: calc(-1 * var(--sds-size-stroke-focus-ring));
+  outline: 2px solid var(--sds-color-border-default-default);
+  outline-offset: -2px;
 }
 
 .accordion-title {
-  font: var(--sds-font-body-strong);
-  color: var(--sds-color-text-default-default);
-  line-height: 1.4;
   flex: 1;
+  font-weight: var(--sds-typography-body-font-weight-strong);
+  color: var(--sds-color-text-default-default);
 }
 
 .accordion-icon {
-  width: var(--sds-size-space-600);
-  height: var(--sds-size-space-600);
-  color: var(--sds-color-icon-default-default);
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sds-color-icon-default-default);
 }
 
 .accordion-content {
-  border-top: var(--sds-size-stroke-border) solid var(--sds-color-border-default-default);
+  overflow: hidden;
 }
 
 .accordion-content-inner {
-  padding: var(--sds-size-space-400);
-  font: var(--sds-font-body-base);
-  color: var(--sds-color-text-default-default);
+  padding: 0 var(--sds-size-padding-lg) var(--sds-size-padding-lg) var(--sds-size-padding-lg);
+  font-family: var(--sds-typography-body-font-family);
+  font-size: calc(var(--sds-typography-body-size-medium) * 1px);
+  font-weight: var(--sds-typography-body-font-weight-regular);
   line-height: 1.4;
-}
-
-/* React Aria specific styles */
-.accordion-item[data-closed] .accordion-content {
-  display: none;
-}
-
-.accordion-item[data-expanded] .accordion-content {
-  display: block;
+  color: var(--sds-color-text-default-default);
 }
