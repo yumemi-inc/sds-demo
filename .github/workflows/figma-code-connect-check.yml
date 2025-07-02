@@ -34,7 +34,7 @@ jobs:
             echo "✅ **検証が完了しました。Code Connectの公開準備が整っています。**" >> result.md
             echo "success=true" >> $GITHUB_OUTPUT
           else
-            echo "⚠️ **検証でエラーが検出されました。修正後に再度お試しください。**" >> result.md
+            echo "⚠️ **検証でエラーが検出されました。**" >> result.md
             echo "success=false" >> $GITHUB_OUTPUT
           fi
           
