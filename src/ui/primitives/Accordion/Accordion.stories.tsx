@@ -1,48 +1,39 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Accordion, AccordionItem } from "./Accordion";
-import { Text, TextHeading } from "primitives";
-import "react";
 
 const meta: Meta<typeof Accordion> = {
   component: Accordion,
-  title: "SDS Primitives/Accordion",
+  title: "SDS Primitives/Data Display",
   parameters: { layout: "centered" },
 };
 export default meta;
 
 export const StoryAccordion: StoryObj<typeof Accordion> = {
   name: "Accordion",
-  args: {},
-  render: () => (
-    <Accordion>
-      <AccordionItem title="Item 1">
-        Answer the frequently asked question in a simple sentence, a longish
-        paragraph, or even in a list.
-      </AccordionItem>
-      <AccordionItem title="Item 2">
-        Answer the frequently asked question in a simple sentence, a longish
-        paragraph, or even in a list.
-      </AccordionItem>
-      <AccordionItem title="Item 3">
-        Answer the frequently asked question in a simple sentence, a longish
-        paragraph, or even in a list.
-      </AccordionItem>
-    </Accordion>
-  ),
-};
-
-export const StoryAccordionItem: StoryObj<typeof AccordionItem> = {
-  name: "Accordion Item",
-  args: {},
-  render: () => (
-    <Accordion>
-      <AccordionItem title="Complex Content">
-        <TextHeading>Heading</TextHeading>
-        <Text>
+  args: {
+    allowsMultipleExpanded: false,
+  },
+  argTypes: {
+    allowsMultipleExpanded: {
+      control: { type: "boolean" },
+    },
+  },
+  render: ({ ...props }) => (
+    <div style={{ width: 640 }}>
+      <Accordion {...props}>
+        <AccordionItem title="What is this component?">
           Answer the frequently asked question in a simple sentence, a longish
           paragraph, or even in a list.
-        </Text>
-      </AccordionItem>
-    </Accordion>
+        </AccordionItem>
+        <AccordionItem title="How do I use it?">
+          You can use this accordion component to display collapsible content
+          sections. Each item can be expanded to reveal more information.
+        </AccordionItem>
+        <AccordionItem title="Can I customize it?">
+          Yes, you can customize the appearance using CSS variables and modify
+          the behavior through props like allowsMultipleExpanded.
+        </AccordionItem>
+      </Accordion>
+    </div>
   ),
 };
