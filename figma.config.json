@@ -3,6 +3,7 @@
     "include": ["src/ui/**/*", "src/figma/**/*"],
     "exclude": ["src/figma/icons/*"],
     "parser": "react",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/dH8IBJZoek9IfHqTGcUINv",
     "importPaths": {
       "ui/compositions/**/*": "compositions",
       "ui/icons/*": "icons",
