@@ -1,20 +1,29 @@
 import figma from "@figma/code-connect";
 import { Accordion, AccordionItem } from "./Accordion";
 
-figma.connect(Accordion, "<FIGMA_ACCORDION_ACCORDION>", {
+figma.connect(AccordionItem, "<FIGMA_PRIMITIVES_ACCORDION_ITEM>", {
   props: {
-    children: figma.children("Accordion Item"),
-  },
-  example: ({ children }) => <Accordion>{children}</Accordion>,
-});
-
-figma.connect(AccordionItem, "<FIGMA_ACCORDION_ACCORDION_ITEM>", {
-  props: {
-    dataSelected: figma.enum("State", {
-      Open: "true",
-    }),
     title: figma.string("Title"),
     children: figma.string("Content"),
+    state: figma.enum("State", {
+      Open: undefined,
+      Closed: undefined,
+    }),
   },
-  example: ({ dataSelected, ...props }) => <AccordionItem {...props} />,
+  example: ({ title, children, ...props }) => (
+    <AccordionItem title={title} {...props}>
+      {children}
+    </AccordionItem>
+  ),
+});
+
+figma.connect(Accordion, "<FIGMA_PRIMITIVES_ACCORDION>", {
+  props: {
+    children: figma.children(["Accordion Item"]),
+  },
+  example: ({ children, ...props }) => (
+    <Accordion {...props}>
+      {children}
+    </Accordion>
+  ),
 });

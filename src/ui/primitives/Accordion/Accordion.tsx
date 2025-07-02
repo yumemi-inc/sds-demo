@@ -1,50 +1,55 @@
-import clsx from "clsx";
-import { IconChevronDown } from "icons";
-import {
-  Button,
-  Disclosure,
-  DisclosureGroup,
-  DisclosurePanel,
-  Heading,
-  type DisclosureGroupProps,
-  type DisclosureProps,
-} from "react-aria-components";
+import { clsx } from "clsx";
+import React from "react";
+import { DisclosureGroup, Disclosure, Button, DisclosurePanel } from "react-aria-components";
+import { IconChevronDown, IconChevronUp } from "icons";
 import "./accordion.css";
 
-export type AccordionProps = DisclosureGroupProps;
-export function Accordion({ className, ...props }: AccordionProps) {
-  const classNames = clsx(className, "accordion");
-  return <DisclosureGroup className={classNames} {...props} />;
-}
+export type AccordionItemProps = {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+};
 
-export type AccordionItemProps = DisclosureProps & { title: string };
-export function AccordionItem({
-  className,
-  title,
-  isExpanded,
-  isDisabled,
-  children,
-  ...props
-}: AccordionItemProps) {
-  const classNames = clsx(className, "accordion-item");
-  return (
-    <Disclosure className={classNames} {...props}>
-      <Heading className="accordion-item-title">
-        <Button slot="trigger">
-          {title}
-          <span
-            role="img"
-            aria-hidden="true"
-            aria-label="accordion item indicator"
-            className="accordion-item-indicator"
-          >
-            <IconChevronDown size="20" />
-          </span>
-        </Button>
-      </Heading>
-      <DisclosurePanel className="accordion-item-content">
-        <>{children}</>
-      </DisclosurePanel>
-    </Disclosure>
-  );
-}
+export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
+  ({ title, children, className }, ref) => {
+    return (
+      <Disclosure className={clsx(className, "accordion-item")} ref={ref}>
+        {({ isExpanded }) => (
+          <>
+            <Button className="accordion-trigger">
+              <span className="accordion-title">{title}</span>
+              <span className="accordion-icon">
+                {isExpanded ? <IconChevronUp /> : <IconChevronDown />}
+              </span>
+            </Button>
+            <DisclosurePanel className="accordion-content">
+              <div className="accordion-content-inner">
+                {children}
+              </div>
+            </DisclosurePanel>
+          </>
+        )}
+      </Disclosure>
+    );
+  }
+);
+
+export type AccordionProps = {
+  children: React.ReactNode;
+  className?: string;
+  allowsMultipleExpanded?: boolean;
+};
+
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
+  ({ children, className, allowsMultipleExpanded = false }, ref) => {
+    return (
+      <DisclosureGroup
+        className={clsx(className, "accordion")}
+        allowsMultipleExpanded={allowsMultipleExpanded}
+        ref={ref}
+      >
+        {children}
+      </DisclosureGroup>
+    );
+  }
+);
