@@ -1,0 +1,1 @@
+`/docs/prompts/create-figma-component.md`を参照してください。

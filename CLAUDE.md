@@ -1,0 +1,1 @@
+`/docs/prompts/basic.md`を参照してください。
