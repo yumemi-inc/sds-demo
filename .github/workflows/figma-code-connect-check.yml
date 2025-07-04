@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Figma Dry Run
+      - name: Dry Run Publish Code Connect
         id: dry-run
         run: |
           echo "## 🎨 Figma Code Connect Dry Run" > result.md
