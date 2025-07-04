@@ -1,0 +1,66 @@
+name: "Figma Code Connect Dry Run"
+
+on:
+  pull_request:
+    paths: ['**/*.figma.tsx']
+
+jobs:
+  figma-dry-run:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Dry Run Publish Code Connect
+        id: dry-run
+        run: |
+          echo "## 🎨 Figma Code Connect Dry Run" > result.md
+          echo "" >> result.md
+          
+          if npm run figma:check > dry-run-output.txt 2>&1; then
+            echo "✅ **検証が完了しました。Code Connectの公開準備が整っています。**" >> result.md
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ **検証でエラーが検出されました。**" >> result.md
+            echo "success=false" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "" >> result.md
+          echo "<details>" >> result.md
+          echo "<summary>詳細を表示</summary>" >> result.md
+          echo "" >> result.md
+          echo "\`\`\`" >> result.md
+          cat dry-run-output.txt >> result.md
+          echo "\`\`\`" >> result.md
+          echo "</details>" >> result.md
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        continue-on-error: true
+        
+      - name: Comment PR
+        if: always()
+        run: gh pr comment ${{ github.event.number }} --body-file result.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Check Figma Status
+        run: |
+          if [ "${{ steps.dry-run.outputs.success }}" = "false" ]; then
+            echo "Code Connect の検証に失敗しました。"
+            exit 1
+          else
+            echo "Code Connect の検証が正常に完了しました。"
+          fi
