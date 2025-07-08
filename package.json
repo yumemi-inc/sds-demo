@@ -12,6 +12,7 @@
     "storybook:build": "storybook build --output-dir dist/storybook",
     "build": "npm run app:build; npm run storybook:build",
     "figma:publish": "figma connect publish",
+    "figma:check": "figma connect publish --dry-run",
     "figma:unpublish": "figma connect unpublish --node-url",
     "figma:connect": "figma connect",
     "script:dev-resources": "cd scripts/dev-resources; node --env-file=../../.env app.mjs; cd -;",
